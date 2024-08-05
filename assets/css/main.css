@@ -81,7 +81,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #fffffe;
+		background: #f3d2c1;
 		background-image: url("images/bg02.png");
 	}
 
@@ -2356,6 +2356,7 @@ input, select, textarea {
 
 	#footer {
 		position: relative;
+		background-color: #fffffe !important;
 		color: #858484;
 		padding: 4em 0;
 	}
@@ -2397,7 +2398,7 @@ input, select, textarea {
 		}
 
 		#footer header {
-			margin: 0 0 3em 0;background
+			margin: 0 0 3em 0;
 		}
 
 			#footer header h2 {
@@ -2747,7 +2748,7 @@ input, select, textarea {
 				}
 
 				#navPanel .depth-0 {
-					color: #fff;
+					color: #001858;
 				}
 
 			body.navPanel-visible #page-wrapper {
