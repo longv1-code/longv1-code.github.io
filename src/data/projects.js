@@ -22,6 +22,9 @@
  *   learned     – paragraph: honest reflection on what you learned
  */
 
+import daring_dungoner from '../assets/images/daring_dungoner.png';
+import gradprix from '../assets/images/gradprix.png'
+
 export const PROJECTS = [
   {
     id: 1,
@@ -62,7 +65,7 @@ export const PROJECTS = [
     summary:
       "Upload your transcript and GradPrix uses AI to turn it into a personalized, step-by-step degree plan that makes graduation requirements instantly clear.",
     tags: ["Full-Stack", "Hackathon", "TypeScript", "AI Integration", "Database"],
-    image: "../assets/images/gradprix.png",
+    image: gradprix,
     role: "Frontend Developer",
     duration: "24 hours",
     tech: ["Express.js", "Node.js", "PostgreSQL", "React", "TypeScript", "Vite", "Gemini API"],
@@ -93,7 +96,7 @@ export const PROJECTS = [
     summary:
       "A 2D dungeon adventure where “loot” grows increasingly personal—ending in a narrative twist that recontextualizes the entire run.",
     tags: ["Game Development", "Hackathon", "Godot", "UI/UX"],
-    image: "../assets/images/daring_dungoner.png",
+    image: daring_dungoner,
     role: "Lead Programmer",
     duration: "Ongoing",
     tech: ["Godot Engine", "GD Script"],

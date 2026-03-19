@@ -9,7 +9,7 @@
   overflow: hidden; position: relative; background: var(--surface);
 }
 .cs-banner img {
-  width: 100%; height: 100%; object-fit: cover;
+  width: 100%; height: 100%; object-fit: cover; object-position: top;
   display: block; filter: grayscale(15%) brightness(.78);
 }
 .cs-banner::after {
