@@ -32,21 +32,25 @@ export default function Contact() {
         </div>
 
         {/* Right: contact form */}
-        <form className="form" onSubmit={(e) => e.preventDefault()}>
+        <form 
+          className="form"
+          action="https://www.formbackend.com/f/2fb6c8381412111c"
+          method="POST"
+        >
           {[
-            ["Name",    "text",  "Your name"],
-            ["Email",   "email", "your@email.com"],
-            ["Subject", "text",  "What's on your mind?"],
-          ].map(([label, type, placeholder]) => (
+            ["Name",    "text",  "Your name",           "name"],
+            ["Email",   "email", "your@email.com",      "email"],
+            ["Subject", "text",  "What's on your mind?", "subject"],
+          ].map(([label, type, placeholder, name]) => (
             <div className="fg" key={label}>
               <label className="fl">{label}</label>
-              <input type={type} placeholder={placeholder} className="fi" />
+              <input type={type} name={name} placeholder={placeholder} className="fi" required />
             </div>
           ))}
 
           <div className="fg">
             <label className="fl">Message</label>
-            <textarea placeholder="Tell me about your project..." className="fi" />
+            <textarea name="message" placeholder="Tell me about your project..." className="fi" required />
           </div>
 
           <div className="form-submit">
