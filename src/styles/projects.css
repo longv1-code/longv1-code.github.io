@@ -2,7 +2,10 @@
 
 .car-overflow {
   overflow-x: auto;
+<<<<<<< HEAD
   overflow-y: hidden;
+=======
+>>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -17,9 +20,14 @@
   flex-direction: column;
   scroll-snap-align: start;
   cursor: pointer;
+<<<<<<< HEAD
   height: clamp(520px, 62vh, 700px);
 }
 .car-slide.is-disabled { cursor: default; }
+=======
+  height: 700px;
+}
+>>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
 
 .car-img-wrap {
   overflow: hidden; position: relative;
@@ -59,6 +67,7 @@
   line-height: 1.05; letter-spacing: -.01em; color: var(--text);
   margin-bottom: 10px;
 }
+<<<<<<< HEAD
 .car-title-row {
   display: flex;
   align-items: center;
@@ -67,10 +76,18 @@
   margin-bottom: 10px;
 }
 .car-title-row .car-title { margin-bottom: 0; }
+=======
+>>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
 .car-sum {
   font-size: 14px; line-height: 1.7; color: var(--text2); font-weight: 300; flex: 1;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
 }
+<<<<<<< HEAD
+=======
+.car-bottom {
+  margin-top: 20px; display: flex; align-items: center; justify-content: space-between;
+}
+>>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
 .car-open {
   font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
   color: var(--text2); display: flex; align-items: center; gap: 8px;
@@ -79,6 +96,7 @@
 }
 .car-slide:hover .car-open { color: var(--text); gap: 14px; }
 
+<<<<<<< HEAD
 .car-links {
   display: inline-flex;
   align-items: center;
@@ -97,6 +115,8 @@
   transform: translateY(-2px);
 }
 
+=======
+>>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
 /* nav row */
 .car-nav {
   display: flex; align-items: center; justify-content: flex-end;
@@ -113,6 +133,7 @@
   background: var(--surface); transform: scale(1.05);
 }
 .car-arrow:disabled { opacity: .2; cursor: default; }
+<<<<<<< HEAD
 .car-arrow.is-hidden { opacity: 0; pointer-events: none; }
 
 .archive-cta {
@@ -120,10 +141,15 @@
   display: flex;
   justify-content: flex-end;
 }
+=======
+>>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
 
 @media (max-width: 960px) {
   .car-slide { flex: 0 0 85%; height: auto; }
   .car-img-wrap { aspect-ratio: 16/9; flex: none; }
   .car-content { padding: 24px 20px; }
+<<<<<<< HEAD
   .archive-cta { justify-content: flex-end; }
+=======
+>>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
 }
