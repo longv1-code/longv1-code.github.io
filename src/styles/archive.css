@@ -27,9 +27,13 @@
 
 .archive-head {
 	font-size: 10px;
+	font-weight: 600;
 	letter-spacing: .16em;
 	text-transform: uppercase;
-	color: var(--text3);
+	color: var(--text);
+	background: var(--surface);
+	padding: 14px 10px;
+	border-radius: 6px;
 }
 
 .archive-year { color: var(--text2); }
