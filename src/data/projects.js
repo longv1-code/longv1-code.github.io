@@ -11,10 +11,7 @@
  *   month       – string, e.g. "March"
  *   summary     – one-line description (shown on card + case-study)
  *   tags        – short labels shown on the card (2–4 recommended)
-<<<<<<< HEAD
  *   featured    – show on homepage carousel when true
-=======
->>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
  *   image       – hero / card image URL
  *   role        – your role on the project
  *   duration    – time spent, e.g. "3 months"
@@ -33,10 +30,7 @@ export const PROJECTS = [
   {
     id: 1,
     title: "Horizon",
-<<<<<<< HEAD
     featured: true,
-=======
->>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
     year: "2026",
     month: "March",
     summary:
@@ -68,10 +62,7 @@ export const PROJECTS = [
   {
     id: 2,
     title: "GradPrix",
-<<<<<<< HEAD
     featured: true,
-=======
->>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
     year: "2026",
     month: "January",
     summary:
@@ -103,10 +94,7 @@ export const PROJECTS = [
   {
     id: 3,
     title: "Daring Dungoner",
-<<<<<<< HEAD
     featured: true,
-=======
->>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
     year: "2026",
     month: "Feburary",
     summary:
@@ -138,10 +126,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: "Rate My Tutor",
-<<<<<<< HEAD
     featured: false,
-=======
->>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
     year: "2024",
     month: "September",
     summary:
@@ -173,10 +158,7 @@ export const PROJECTS = [
   {
     id: 5,
     title: "FL.AI.SH",
-<<<<<<< HEAD
     featured: false,
-=======
->>>>>>> 5497c8642e42b4f2d05127ada2002c38b8832d3d
     year: "2024",
     month: "August",
     summary:
