@@ -233,8 +233,8 @@ export const PROJECTS = [
     role: "Co‑Lead Developer",
     duration: "2 months",
     tech: ["React", "JavaScript", "Node.js", "PostgreSQL", "OpenAI API", "Vercel", "CI/CD"],
-    liveUrl: "#",
-    repoUrl: "#",
+    liveUrl: "https://team31-project3.vercel.app/",
+    repoUrl: "https://github.com/CSCE-331-Spring-2026-900-908/team31-project-3",
     problem:
       "A local boba shop still relied on an outdated Java desktop POS, making it difficult to manage inventory, track sales, and serve customers efficiently. We needed a modern, accessible web app that both employees and managers could use seamlessly.",
     built: [
@@ -266,7 +266,7 @@ export const PROJECTS = [
     duration: "1 week",
     tech: ["React", "Tailwind CSS", "Python", "FastAPI", "PostgreSQL", "GPT‑4o‑mini", "Supabase", "Jikan API"],
     liveUrl: "#",
-    repoUrl: "#",
+    repoUrl: "https://github.com/longv1-code/anivibe",
     problem:
       "Finding anime that matches a specific feeling is hard with traditional keyword search. I wanted to build a tool that understands abstract requests like 'a dark psychological thriller with a genius protagonist' and delivers precise, curated recommendations instantly.",
     built: [

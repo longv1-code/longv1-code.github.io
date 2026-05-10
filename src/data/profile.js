@@ -28,7 +28,7 @@ export const PROFILE = {
   /** About section */
   aboutBio: [
     "I'm a <strong>computer engieering student</strong> and software engineer who believes good code and good design are inseparable. I obsess over the details — the interaction that feels just right, the architecture that stays elegant under pressure.",
-    "My work spans <strong>full-stack web development</strong>, <strong>frontend systems</strong>, and <strong>game development</strong>. I'm actively looking for internship opportunities where I can contribute, learn, and grow alongside a great team.",
+    "My work spans <strong>full-stack web development</strong>, <strong>frontend systems</strong>, and <strong>game development</strong>. I'm actively looking for internship opportunities powered by low sleep and lots of coffee.",
     "Outside of code, you'll find me exploring game mechanics, tinkering with open-source tools, or thinking about how interfaces make people feel.",
   ],
 
