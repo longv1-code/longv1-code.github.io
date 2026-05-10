@@ -12,7 +12,7 @@
 .car-overflow::-webkit-scrollbar { display: none; }
 
 .car-slide {
-  flex: 0 0 calc(50% - 1px);
+  flex: 0 0 calc(33.333% - 1.5px);
   display: flex;
   flex-direction: column;
   scroll-snap-align: start;
