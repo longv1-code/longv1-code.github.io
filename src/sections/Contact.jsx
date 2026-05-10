@@ -38,19 +38,34 @@ export default function Contact() {
           method="POST"
         >
           {[
-            ["Name",    "text",  "Your name",           "name"],
-            ["Email",   "email", "your@email.com",      "email"],
-            ["Subject", "text",  "What's on your mind?", "subject"],
-          ].map(([label, type, placeholder, name]) => (
+            ["Name",    "text",  "Your name",           "name", "name"],
+            ["Email",   "email", "your@email.com",      "email", "email"],
+            ["Subject", "text",  "What's on your mind?", "subject", "off"],
+          ].map(([label, type, placeholder, name, autoComplete]) => (
             <div className="fg" key={label}>
-              <label className="fl">{label}</label>
-              <input type={type} name={name} placeholder={placeholder} className="fi" required />
+              <label className="fl" htmlFor={name}>{label}</label>
+              <input
+                id={name}
+                type={type}
+                name={name}
+                placeholder={placeholder}
+                className="fi"
+                autoComplete={autoComplete}
+                required
+              />
             </div>
           ))}
 
           <div className="fg">
-            <label className="fl">Message</label>
-            <textarea name="message" placeholder="Tell me about your project..." className="fi" required />
+            <label className="fl" htmlFor="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Tell me about your project..."
+              className="fi"
+              autoComplete="off"
+              required
+            />
           </div>
 
           <div className="form-submit">

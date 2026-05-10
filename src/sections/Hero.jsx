@@ -7,6 +7,10 @@ export default function Hero() {
   const [rFade, setRFade] = useState(false);
 
   useEffect(() => {
+    const prefersReducedMotion =
+      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
     const id = setInterval(() => {
       setRFade(true);
       setTimeout(() => {
@@ -17,8 +21,13 @@ export default function Hero() {
     return () => clearInterval(id);
   }, []);
 
+  const prefersReducedMotion = () =>
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   const scrollTo = (id) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({
+      behavior: prefersReducedMotion() ? "auto" : "smooth",
+    });
 
   return (
     <section className="hero" id="home">
@@ -30,7 +39,7 @@ export default function Hero() {
           <span className="h-wave">👋</span>
         </h1>
 
-        <div className="h-role">
+        <div className="h-role" aria-live="polite" aria-atomic="true">
           <span className={rFade ? "r-out" : "r-in"}>
             {PROFILE.roles[rIdx]}
           </span>
@@ -39,10 +48,10 @@ export default function Hero() {
         <p className="h-desc">{PROFILE.heroBio}</p>
 
         <div className="h-actions">
-          <button className="btn-fill" onClick={() => scrollTo("projects")}>
+          <button type="button" className="btn-fill" onClick={() => scrollTo("projects")}>
             See my work
           </button>
-          <button className="btn-ghost" onClick={() => scrollTo("contact")}>
+          <button type="button" className="btn-ghost" onClick={() => scrollTo("contact")}>
             Get in touch →
           </button>
         </div>

@@ -4,6 +4,8 @@ import "../styles/chrome.css";
 export default function Footer() {
   const { pathname } = useLocation();
   const showBackToTop = pathname !== "/archive";
+  const prefersReducedMotion = () =>
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
     <footer>
@@ -11,7 +13,8 @@ export default function Footer() {
       {showBackToTop && (
         <button
           className="f-top"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? "auto" : "smooth" })}
         >
           Back to top ↑
         </button>

@@ -10,24 +10,35 @@ export default function Nav() {
   const { pathname } = useLocation();
   const isHome    = pathname === "/";
 
+  const prefersReducedMotion = () =>
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   const scrollTo = (id) => {
     if (!isHome) {
       navigate("/");
       // wait for Home to mount, then scroll
-      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" }), 120);
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({
+          behavior: prefersReducedMotion() ? "auto" : "smooth",
+        });
+      }, 120);
     } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      document.getElementById(id)?.scrollIntoView({
+        behavior: prefersReducedMotion() ? "auto" : "smooth",
+      });
     }
   };
 
   return (
-    <nav>
+    <nav aria-label="Primary">
       <Link to="/" className="n-logo">{PROFILE.firstName} {PROFILE.lastName}</Link>
 
       <ul className="n-center">
         {NAV_LINKS.map((s) => (
           <li key={s}>
-            <a onClick={() => scrollTo(s)}>{s}</a>
+            <button type="button" className="n-link" onClick={() => scrollTo(s)}>
+              {s}
+            </button>
           </li>
         ))}
       </ul>

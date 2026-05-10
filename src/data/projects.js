@@ -126,7 +126,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: "Rate My Tutor",
-    featured: false,
+    featured: true,
     year: "2024",
     month: "September",
     summary:
@@ -158,7 +158,7 @@ export const PROJECTS = [
   {
     id: 5,
     title: "FL.AI.SH",
-    featured: false,
+    featured: true,
     year: "2024",
     month: "August",
     summary:
@@ -186,5 +186,69 @@ export const PROJECTS = [
     ],
     learned:
       "Maintaining open source is a product role, not just an engineering one. Half the work is writing docs, handling issues diplomatically, and deciding what not to build. The 2,000 downloads came mostly from one Reddit post — distribution matters as much as the code.",
+  },
+  {
+    id: 6,
+    title: "SLANNtea",
+    featured: true,
+    year: "2026",
+    month: "March",
+    summary:
+      "Co‑led a team of five to build a full‑stack point‑of‑sale system for a boba tea shop, complete with inventory management, employee administration, sales reporting, and an AI‑powered ordering chatbot.",
+    tags: ["Full‑Stack", "AI Integration", "Team Project", "Point of Sale"],
+    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=85",
+    role: "Co‑Lead Developer",
+    duration: "2 months",
+    tech: ["React", "JavaScript", "Node.js", "PostgreSQL", "OpenAI API", "Vercel", "CI/CD"],
+    liveUrl: "#",
+    repoUrl: "#",
+    problem:
+      "A local boba shop still relied on an outdated Java desktop POS, making it difficult to manage inventory, track sales, and serve customers efficiently. We needed a modern, accessible web app that both employees and managers could use seamlessly.",
+    built: [
+      {
+        heading: "AI Chatbot for Conversational Ordering",
+        body: "Integrated OpenAI to let customers place orders using natural language – from 'I want a mango milk tea with boba, less sweet' directly into the cart. The chatbot extracts modifiers and drink names, making the kiosk experience fast and intuitive.",
+        image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80",
+      },
+      {
+        heading: "Accessibility‑First Kiosk Mode",
+        body: "Designed a customer‑facing kiosk with high‑contrast mode, language translation, and oversized touch targets. The interface follows WCAG principles so that anyone – regardless of ability – can order without assistance.",
+        image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=900&q=80",
+      },
+    ],
+    learned:
+      "Leading a cross‑functional team taught me to balance feature development with code quality, the importance of clear API contracts, and how to iterate on AI features based on real user behavior. Mentorship and code reviews became the backbone of our velocity.",
+  },
+  {
+    id: 7,
+    title: "AniVibe",
+    featured: true,
+    year: "2026",
+    month: "May",
+    summary:
+      "An anime recommendation engine that accepts natural‑language descriptions – a vibe, a mood, a plot – and returns a ranked list of matching anime, powered by GPT and the Jikan API.",
+    tags: ["AI/LLM", "Full‑Stack", "Recommendation System", "Semantic Search"],
+    image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&q=85",
+    role: "Solo Developer",
+    duration: "1 month",
+    tech: ["React", "Tailwind CSS", "Python", "FastAPI", "PostgreSQL", "GPT‑4o‑mini", "Supabase", "Jikan API"],
+    liveUrl: "#",
+    repoUrl: "#",
+    problem:
+      "Finding anime that matches a specific feeling is hard with traditional keyword search. I wanted to build a tool that understands abstract requests like 'a dark psychological thriller with a genius protagonist' and delivers precise, curated recommendations instantly.",
+    built: [
+      {
+        heading: "Natural Language Query Parsing",
+        body: "Used GPT‑4o‑mini to convert free‑form text into structured filters – genres, themes, release years, and more – which are then passed to the Jikan API. The prompt engineering ensures the model extracts exactly the right dimensions without hallucination.",
+        image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=900&q=80",
+      },
+      {
+        heading: "Semantic Re‑ranking for Relevance",
+        body: "After fetching initial results, the system compares anime synopses with the user's original query using embedding similarity. This re‑ranks items so that the closest thematic matches appear first, even if they didn't surface through exact filters.",
+        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=900&q=80",
+      },
+    ],
+    learned:
+      "This project deepened my understanding of API orchestration, the nuances of prompt design, and the difference between keyword search and semantic search. I also learned how to structure a modular FastAPI codebase that separates routes, services, and external calls cleanly.",
   },
 ];

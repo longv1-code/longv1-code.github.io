@@ -20,14 +20,17 @@ export default function App() {
   return (
     <>
       <ScrollToTop />
+      <a className="skip-link" href="#main">Skip to content</a>
       <Nav />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/archive" element={<ProjectArchive />} />
-        {ENABLE_CASE_STUDY && (
-          <Route path="/project/:id" element={<ProjectDetail />} />
-        )}
-      </Routes>
+      <main id="main" tabIndex="-1">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/archive" element={<ProjectArchive />} />
+          {ENABLE_CASE_STUDY && (
+            <Route path="/project/:id" element={<ProjectDetail />} />
+          )}
+        </Routes>
+      </main>
       <Footer />
       <SocialBar />
     </>

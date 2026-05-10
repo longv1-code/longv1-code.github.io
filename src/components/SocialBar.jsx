@@ -21,6 +21,7 @@ export default function SocialBar() {
             href={href}
             className="s-btn"
             title={label}
+            aria-label={label}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -29,7 +30,14 @@ export default function SocialBar() {
         ))}
       </div>
 
-      <button className="t-tog" onClick={toggle} title="Toggle theme">
+      <button
+        className="t-tog"
+        type="button"
+        onClick={toggle}
+        title="Toggle theme"
+        aria-label="Toggle theme"
+        aria-pressed={dark}
+      >
         {dark ? "☀" : "☽"}
       </button>
     </>
