@@ -26,6 +26,39 @@
 import daring_dungoner from '../assets/images/daring_dungoner.png';
 import gradprix from '../assets/images/gradprix.png'
 
+const MONTH_INDEX = {
+  january: 1,
+  february: 2,
+  feburary: 2,
+  march: 3,
+  april: 4,
+  may: 5,
+  june: 6,
+  july: 7,
+  august: 8,
+  september: 9,
+  october: 10,
+  november: 11,
+  december: 12,
+};
+
+const getMonthIndex = (month) => {
+  if (!month) return 0;
+  const key = String(month).trim().toLowerCase();
+  return MONTH_INDEX[key] || 0;
+};
+
+export const sortProjectsByDate = (projects) =>
+  [...projects].sort((a, b) => {
+    const yearA = Number(a.year) || 0;
+    const yearB = Number(b.year) || 0;
+    if (yearA !== yearB) return yearB - yearA;
+
+    const monthA = getMonthIndex(a.month);
+    const monthB = getMonthIndex(b.month);
+    return monthB - monthA;
+  });
+
 export const PROJECTS = [
   {
     id: 1,
@@ -126,7 +159,7 @@ export const PROJECTS = [
   {
     id: 4,
     title: "Rate My Tutor",
-    featured: true,
+    featured: false,
     year: "2024",
     month: "September",
     summary:
@@ -158,7 +191,7 @@ export const PROJECTS = [
   {
     id: 5,
     title: "FL.AI.SH",
-    featured: true,
+    featured: false,
     year: "2024",
     month: "August",
     summary:
@@ -230,7 +263,7 @@ export const PROJECTS = [
     tags: ["AI/LLM", "Full‑Stack", "Recommendation System", "Semantic Search"],
     image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&q=85",
     role: "Solo Developer",
-    duration: "1 month",
+    duration: "1 week",
     tech: ["React", "Tailwind CSS", "Python", "FastAPI", "PostgreSQL", "GPT‑4o‑mini", "Supabase", "Jikan API"],
     liveUrl: "#",
     repoUrl: "#",

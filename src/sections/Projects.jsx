@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PROJECTS } from "../data/projects";
+import { PROJECTS, sortProjectsByDate } from "../data/projects";
 import { IconArrowUpRight, IconChevronLeft, IconChevronRight, IconGH } from "../components/Icons";
 import "../styles/projects.css";
 
@@ -9,7 +9,7 @@ export default function Projects() {
   const navigate = useNavigate();
   const ENABLE_CASE_STUDY = false;
   const isInteractive = ENABLE_CASE_STUDY;
-  const featuredProjects = PROJECTS.filter((p) => p.featured);
+  const featuredProjects = sortProjectsByDate(PROJECTS).filter((p) => p.featured);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 

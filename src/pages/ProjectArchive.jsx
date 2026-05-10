@@ -1,13 +1,9 @@
-import { PROJECTS } from "../data/projects";
+import { PROJECTS, sortProjectsByDate } from "../data/projects";
 import { IconArrowUpRight, IconGH } from "../components/Icons";
 import "../styles/archive.css";
 
 export default function ProjectArchive() {
-	const sortedProjects = [...PROJECTS].sort((a, b) => {
-		const yearA = Number(a.year) || 0;
-		const yearB = Number(b.year) || 0;
-		return yearB - yearA;
-	});
+	const sortedProjects = sortProjectsByDate(PROJECTS);
 
 	return (
 		<section className="archive-page">

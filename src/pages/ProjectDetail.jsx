@@ -1,12 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { PROJECTS } from "../data/projects";
+import { PROJECTS, sortProjectsByDate } from "../data/projects";
 import { IconArrowUpRight, IconGH } from "../components/Icons";
 import "../styles/casestudy.css";
 
 export default function ProjectDetail() {
   const { id }   = useParams();
   const navigate = useNavigate();
-  const project  = PROJECTS.find((p) => p.id === Number(id));
+  const project  = sortProjectsByDate(PROJECTS).find((p) => p.id === Number(id));
   const projectDate = project?.month ? `${project.month} ${project.year}` : project?.year;
 
   // 404 — project not found
