@@ -6,19 +6,19 @@
 
 export const SKILL_GROUPS = [
   {
-    label: "Programming Languages",
-    items: ["Python", "C/C++", "Java", "JavaScript", "TypeScript"],
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "Java", "C/C++"],
   },
   {
-    label: "Frameworks & Libraries",
-    items: ["React", "Next.js", "Node.js", "Express.js", "Tailwind CSS", "HTML/CSS"],
+    label: "Frontend",
+    items: ["React", "Vite", "Zustand", "CSS Modules", "Tailwind CSS"],
   },
   {
-    label: "Databases",
-    items: ["PostgreSQL", "MongoDB", "SQL"],
+    label: "Backend & Data",
+    items: ["Node.js", "Express", "FastAPI", "PostgreSQL", "Prisma", "MongoDB"],
   },
   {
-    label: "Tools",
-    items: ["Git", "Linux", "Vercel", "VS Code"],
+    label: "Platforms & Tools",
+    items: ["Clerk", "Stripe", "Gemini API", "Supabase", "Vercel", "Render", "Git", "Godot"],
   },
 ];

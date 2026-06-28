@@ -24,12 +24,14 @@
  */
 
 import daring_dungoner from '../assets/images/daring_dungoner.png';
-import gradprix from '../assets/images/gradprix.png'
+import gradprix from '../assets/images/gradprix.png';
+import slanntea from '../assets/images/slanntea.png';
+import anivibe from '../assets/images/anivibe.png';
+import placeholder from '../assets/images/project-placeholder.jpg'
 
 const MONTH_INDEX = {
   january: 1,
   february: 2,
-  feburary: 2,
   march: 3,
   april: 4,
   may: 5,
@@ -62,226 +64,160 @@ export const sortProjectsByDate = (projects) =>
 export const PROJECTS = [
   {
     id: 1,
-    title: "Horizon",
+    title: "Debt Dungeon",
     featured: true,
     year: "2026",
-    month: "March",
+    month: "June",
     summary:
-      "A real banking dashboard that securely connects accounts and visualizes transactions, history, and card insights with a polished, data-driven UI.",
-    tags: ["Full-Stack", "Next.js", "TypeScript", "Data Visualization"],
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&q=85",
+      "A debt payoff tracker that turns each debt into a boss fight — every payment deals damage, and unpaid interest keeps the boss regenerating health.",
+    tags: ["Full-Stack", "Solo Project", "TypeScript", "PostgreSQL"],
+    image: placeholder,
     role: "Solo Developer",
-    duration: "Ongoing",
-    tech: ["Next.js 14", "React", "TypeScript", "Appwrite", "Plaid API", "Dwolla API", "Tailwind CSS", "Chart.js"],
+    duration: "Ongoing — in development",
+    tech: ["React", "Vite", "Express", "PostgreSQL", "Prisma", "Zustand", "Clerk", "Stripe"],
     liveUrl: "#",
-    repoUrl: "https://github.com/longv1-code/banking-system",
+    repoUrl: "https://github.com/longv1-code/debt-dungeon",
     problem:
-      "Engineering teams I talked to were juggling three separate tools — GitHub for issues, Notion for planning, and Slack threads for sprint updates. Context was always scattered. I wanted to build one workspace where code and planning lived together.",
+      "Paying off debt is mostly invisible progress — you make a payment, a number goes down, and that's it. There's no sense of momentum. I wanted to build a tracker where progress actually feels like progress: log a payment, watch a boss take damage, and see the fight you're actually in instead of a spreadsheet row.",
     built: [
       {
-        heading: "Real-time sync with WebSockets",
-        body: "The core challenge was keeping multiple team members in sync without page refreshes. I built a WebSocket layer over Express that broadcasts board state diffs — only the changed card, not the full board — keeping payloads tiny even on large sprints.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
+        heading: "Payments that deal damage, interest that heals the boss",
+        body: "Each debt is modeled as a boss with the loan's balance as its HP. Logging a payment runs a single transaction: it creates a Payment record, recalculates the debt's currentBalance, and returns whether the boss was defeated. The harder design problem was interest — debt isn't static, so a monthly interest service recalculates accrued interest using the standard amortization formula and adds it back to the balance, which is the boss regenerating HP if you're not paying enough to outpace it. That mechanic only works if the math is actually correct, so I had to get comfortable with amortization formulas I'd only seen in a finance class before.",
       },
       {
-        heading: "GitHub integration",
-        body: "I used GitHub's webhook API to auto-create and update cards when issues are opened, closed, or labeled. The trickiest part was reconciling state conflicts when a card was moved manually on the board at the same time a webhook fired.",
-        image: "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=900&q=80",
+        heading: "First real schema, first real migration headaches",
+        body: "This was my first project using Prisma in production rather than a tutorial. I hit breaking changes between Prisma versions partway through and had to migrate the schema and generator config without breaking existing data — a good forcing function for actually understanding what Prisma generates versus what I was assuming it generates. The schema itself is small and deliberate: Users, Debts, and Payments, with cascading deletes so removing a debt cleanly removes its payment history.",
+      },
+      {
+        heading: "Hand-built pixel UI, no component library",
+        body: "I built the design system from scratch with CSS Modules and a custom token file instead of pulling in Tailwind or a UI kit — I wanted full control over how the game felt, not just how it looked. Getting boss sprite sheets to animate correctly (idle, hit, attack, death states, each a different frame count) and stay pixel-aligned across screen sizes took more trial and error than I expected. It's the kind of detail that's invisible when done right and immediately obvious when it's off by a few pixels.",
       },
     ],
     learned:
-      "Distributed state is harder than it looks. I underestimated how often two users would act on the same card simultaneously — it forced me to implement optimistic UI updates with server reconciliation, a pattern I'd only read about before. I'd also scope the MVP tighter next time; the GitHub integration added 3 weeks I hadn't planned for.",
+      "I'm currently migrating auth from a custom JWT system to Clerk and adding Stripe for paid tiers — the schema is migrated but the auth page rewrite is still in progress. The honest current limitation: debts are entered manually rather than pulled from Plaid, because reflecting a real payment as 'damage' against live bank data raises questions I haven't fully solved yet (how do you handle a missed payment, a partial payment, or interest that accrues between bank syncs, without the game logic lying to the user). Manual entry was the right call for a v1; real account syncing is a real v2 problem I'd want to design carefully, not bolt on.",
   },
   {
     id: 2,
-    title: "GradPrix",
-    featured: true,
-    year: "2026",
-    month: "January",
-    summary:
-      "Upload your transcript and GradPrix uses AI to turn it into a personalized, step-by-step degree plan that makes graduation requirements instantly clear.",
-    tags: ["Full-Stack", "Hackathon", "TypeScript", "AI Integration", "Database"],
-    image: gradprix,
-    role: "Frontend Developer",
-    duration: "24 hours",
-    tech: ["Express.js", "Node.js", "PostgreSQL", "React", "TypeScript", "Vite", "Gemini API"],
-    liveUrl: "https://gradprix.vercel.app/",
-    repoUrl: "https://github.com/Prunuus/tamuhack26",
-    problem:
-      "I wanted to understand how games actually work under the hood — not through a game engine, but from scratch. The Canvas API seemed like the right level of abstraction: low enough to touch the pixels, high enough to stay in JavaScript.",
-    built: [
-      {
-        heading: "Procedural dungeon generation",
-        body: "I implemented BSP (Binary Space Partitioning) to recursively split the map into rooms, then connected them with corridors. Each run produces a different layout. The hardest part was ensuring every room was always reachable — I added a flood-fill validation pass after generation.",
-        image: "https://images.unsplash.com/photo-1614854262318-831574f15f1f?w=900&q=80",
-      },
-      {
-        heading: "Enemy AI with A* pathfinding",
-        body: "Enemies needed to navigate around walls to chase the player. I implemented A* on a tile grid with a binary heap priority queue for performance. On larger maps with many enemies, naive A* was too slow — I added a shared navigation mesh so enemies could reuse cached paths.",
-        image: "https://images.unsplash.com/photo-1555680202-c86f0e12f086?w=900&q=80",
-      },
-    ],
-    learned:
-      "Game loops are deceptively complex. Managing a fixed timestep for physics while decoupling render rate took a full rewrite of my main loop. I also learned that player feel matters more than technical correctness — sometimes the 'wrong' number just feels better, and that's okay.",
-  },
-  {
-    id: 3,
-    title: "Daring Dungoner",
-    featured: true,
-    year: "2026",
-    month: "Feburary",
-    summary:
-      "A 2D dungeon adventure where “loot” grows increasingly personal—ending in a narrative twist that recontextualizes the entire run.",
-    tags: ["Game Development", "Hackathon", "Godot", "UI/UX"],
-    image: daring_dungoner,
-    role: "Lead Programmer",
-    duration: "Ongoing",
-    tech: ["Godot Engine", "GD Script"],
-    liveUrl: "#",
-    repoUrl: "https://github.com/longv1-code/chillennium-26",
-    problem:
-      "I play music and wanted to understand the math behind synthesis — filters, oscillators, envelopes. Building a DAW in the browser forced me to confront audio engineering concepts I'd only ever experienced as a listener.",
-    built: [
-      {
-        heading: "Polyphonic synth engine",
-        body: "I built a voice allocator that manages a pool of oscillator nodes. When a new note fires, it steals the oldest silent voice. Each voice runs through its own ADSR envelope, then a shared filter and effects bus. The Web Audio API's native scheduling meant near-zero latency.",
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80",
-      },
-      {
-        heading: "Step sequencer with visual feedback",
-        body: "The sequencer uses a Web Worker for the timing loop to avoid jank from the main thread. Each step schedules notes ~100ms ahead using AudioContext.currentTime, while the UI updates on requestAnimationFrame. This decoupling kept the grid visually smooth even at fast BPMs.",
-        image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=900&q=80",
-      },
-    ],
-    learned:
-      "Audio timing in browsers is far more nuanced than I expected — setTimeout is not precise enough for music. The Web Worker + lookahead scheduling pattern was a revelation. I also learned that building tools for creative work requires a different kind of empathy than building productivity software.",
-  },
-  {
-    id: 4,
-    title: "Rate My Tutor",
-    featured: false,
-    year: "2024",
-    month: "September",
-    summary:
-      "A full-stack platform where students can discover and review tutors/TAs—highlighting teaching style so they can choose the right academic support.",
-    tags: ["Full-Stack", "MERN", "REST API", "Database", "Authentication"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=85",
-    role: "Open Source Maintainer",
-    duration: "4 months",
-    tech: ["React", "MongoDB", "Express.js", "Node.js", "REST API"],
-    liveUrl: "#",
-    repoUrl: "https://github.com/aggie-coding-club/Rate-My-Tutor",
-    problem:
-      "Every side project I started needed the same set of components — buttons, modals, form inputs — and I kept rebuilding them. I decided to build one library I'd actually want to use: fully typed, accessible by default, and easy to theme without fighting CSS specificity.",
-    built: [
-      {
-        heading: "Theming via CSS custom properties",
-        body: "Instead of a JS theme object, I used CSS custom properties scoped to a data attribute. This means themes work without a Provider, can be swapped at runtime with zero JS, and even work in plain HTML. I wrote a token validator that checks contrast ratios at build time.",
-        image: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=900&q=80",
-      },
-      {
-        heading: "Accessibility first",
-        body: "Every interactive component follows WCAG 2.1 AA. I used Radix UI primitives for the complex patterns (dialogs, tooltips, dropdowns) and wrote my own for simpler ones. The test suite runs axe-core on every component in CI — a11y regressions fail the build.",
-        image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=900&q=80",
-      },
-    ],
-    learned:
-      "Maintaining open source is a product role, not just an engineering one. Half the work is writing docs, handling issues diplomatically, and deciding what not to build. The 2,000 downloads came mostly from one Reddit post — distribution matters as much as the code.",
-  },
-  {
-    id: 5,
-    title: "FL.AI.SH",
-    featured: false,
-    year: "2024",
-    month: "August",
-    summary:
-      "Enter any topic and this AI-Powered web app will instantly generate clean, study-ready flashcards in a fast, minimal interface.",
-    tags: ["AI-Powered Study Tool", "Full-Stack", "LLM Integration"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=1200&q=85",
-    role: "Open Source Maintainer",
-    duration: "1 week",
-    tech: ["React", "Tailwind CSS", "Next.js", "TypeScript", "OpenAI API", "Vercel", "Node.js"],
-    liveUrl: "#",
-    repoUrl: "https://github.com/longv1-code/kevs_flashcard",
-    problem:
-      "Every side project I started needed the same set of components — buttons, modals, form inputs — and I kept rebuilding them. I decided to build one library I'd actually want to use: fully typed, accessible by default, and easy to theme without fighting CSS specificity.",
-    built: [
-      {
-        heading: "Theming via CSS custom properties",
-        body: "Instead of a JS theme object, I used CSS custom properties scoped to a data attribute. This means themes work without a Provider, can be swapped at runtime with zero JS, and even work in plain HTML. I wrote a token validator that checks contrast ratios at build time.",
-        image: "https://images.unsplash.com/photo-1587440871875-191322ee64b0?w=900&q=80",
-      },
-      {
-        heading: "Accessibility first",
-        body: "Every interactive component follows WCAG 2.1 AA. I used Radix UI primitives for the complex patterns (dialogs, tooltips, dropdowns) and wrote my own for simpler ones. The test suite runs axe-core on every component in CI — a11y regressions fail the build.",
-        image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=900&q=80",
-      },
-    ],
-    learned:
-      "Maintaining open source is a product role, not just an engineering one. Half the work is writing docs, handling issues diplomatically, and deciding what not to build. The 2,000 downloads came mostly from one Reddit post — distribution matters as much as the code.",
-  },
-  {
-    id: 6,
     title: "SLANNtea",
     featured: true,
     year: "2026",
     month: "March",
     summary:
-      "Co‑led a team of five to build a full‑stack point‑of‑sale system for a boba tea shop, complete with inventory management, employee administration, sales reporting, and an AI‑powered ordering chatbot.",
-    tags: ["Full‑Stack", "AI Integration", "Team Project", "Point of Sale"],
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=85",
-    role: "Co‑Lead Developer",
+      "The capstone project for my Introduction to Software Engineering course — a POS system for a boba shop, built in real sprints with a 5-person team. I owned the PostgreSQL schema and the order/inventory API.",
+    tags: ["Full-Stack", "Team Project", "Scrum", "PostgreSQL"],
+    image: slanntea,
+    role: "Backend Engineer",
     duration: "2 months",
-    tech: ["React", "JavaScript", "Node.js", "PostgreSQL", "OpenAI API", "Vercel", "CI/CD"],
-    liveUrl: "https://team31-project3.vercel.app/",
+    tech: ["React", "Node.js", "Express", "PostgreSQL", "Passport.js", "ChatGPT API", "Vercel", "Render"],
+    liveUrl: "https://team31-project-3.vercel.app/",
     repoUrl: "https://github.com/CSCE-331-Spring-2026-900-908/team31-project-3",
     problem:
-      "A local boba shop still relied on an outdated Java desktop POS, making it difficult to manage inventory, track sales, and serve customers efficiently. We needed a modern, accessible web app that both employees and managers could use seamlessly.",
+      "This was the final project for my Introduction to Software Engineering course, after a semester spent actually learning the discipline behind building software, not just the code — UI/UX principles like the Norman door (why a design should make its own use obvious without instructions), and how Scrum actually runs day to day. The project itself: every team was assigned to design and build a full POS system for a boba tea shop. Before writing any code, our professor had us go observe one — watch how employees took orders, then go order a combo meal at a kiosk somewhere else and count how many taps it took to get from start to checkout. That research shaped the whole system: we ended up with four distinct interfaces (a static menu board with allergy info, an employee ordering POS, a manager view layered on top with inventory and reporting, and a customer-facing kiosk) instead of one generic app, because that's what we'd actually watched real ordering systems need.",
     built: [
       {
-        heading: "AI Chatbot for Conversational Ordering",
-        body: "Integrated OpenAI to let customers place orders using natural language – from 'I want a mango milk tea with boba, less sweet' directly into the cart. The chatbot extracts modifiers and drink names, making the kiosk experience fast and intuitive.",
-        image: "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80",
+        heading: "Running it like a real Scrum team, not a group project",
+        body: "We ran the project as actual sprints: at least three stand-up style check-ins a week, tasks tracked as issues in Jira with owners and status, and burndown charts generated from that data to show contribution and progress over time. It was the first time I'd used a sprint cadence and an issue tracker for something other than a tutorial, and it changed how I scoped my own work — breaking the database and API layer into small enough tickets that I could actually show progress at every check-in instead of disappearing for a week and resurfacing with a wall of code.",
       },
       {
-        heading: "Accessibility‑First Kiosk Mode",
-        body: "Designed a customer‑facing kiosk with high‑contrast mode, language translation, and oversized touch targets. The interface follows WCAG principles so that anyone – regardless of ability – can order without assistance.",
-        image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=900&q=80",
+        heading: "The database and the schema everything else depends on",
+        body: "I set up the PostgreSQL schema — products, modifiers, inventory, ingredients, orders and order details, plus a rewards table tied to customer email for the points system — and the relationships between them. Inventory is tracked at the ingredient level, so an order can't be placed if it would use more of an item than is currently in stock; that check lives in the database layer, not scattered across the frontend.",
+      },
+      {
+        heading: "RESTful order routes and session-based auth from scratch",
+        body: "I built the order and product API routes shared by both the employee POS and the customer kiosk: creating an order, adding line items with their selected modifiers, and recalculating subtotal, tax, and total server-side any time the order changes. I also set up session-based authentication with Passport.js, backed by PostgreSQL sessions, so the POS and kiosk could each maintain their own login state without duplicating auth logic. The goal throughout was a clean REST contract where the frontend's job is just to call an endpoint and render what comes back — no duplicating pricing or tax logic on the client, no guessing at what state the order is in.",
+      },
+      {
+        heading: "The system my API had to support",
+        body: "Teammates built the rest of the kiosk on top of those endpoints: a ChatGPT-powered chatbot for customer questions, accessibility features like high-contrast mode, larger tap targets, text-to-speech, and live translation, a weather-aware drink recommender (checking current temperature against each drink's hot/cold label), and an email-based rewards system. None of that was my code, but designing the order API meant thinking through what each of those features would need to call — which is its own kind of design constraint.",
       },
     ],
     learned:
-      "Leading a cross‑functional team taught me to balance feature development with code quality, the importance of clear API contracts, and how to iterate on AI features based on real user behavior. Mentorship and code reviews became the backbone of our velocity.",
+      "Owning the database and API layer on a 5-person team taught me how much an API contract matters once other people are actually depending on it — the kiosk frontend, the chatbot, and the manager reporting view all called into endpoints I owned, so an ambiguous response shape or an unhandled edge case became someone else's bug, not just mine. The course readings on commenting and coding conventions weren't just busywork either — once code review was a regular part of the workflow, writing for a reader other than myself stopped being optional.",
   },
   {
-    id: 7,
+    id: 3,
     title: "AniVibe",
     featured: true,
     year: "2026",
     month: "May",
     summary:
-      "An anime recommendation engine that accepts natural‑language descriptions – a vibe, a mood, a plot – and returns a ranked list of matching anime, powered by GPT and the Jikan API.",
-    tags: ["AI/LLM", "Full‑Stack", "Recommendation System", "Semantic Search"],
-    image: "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=1200&q=85",
+      "An anime recommender that takes a plain-English description of a vibe or plot and turns it into a precise database query over a 20,000+ title dataset.",
+    tags: ["AI/LLM", "Full-Stack", "Solo Project", "Semantic Search"],
+    image: anivibe,
     role: "Solo Developer",
-    duration: "1 week",
-    tech: ["React", "Tailwind CSS", "Python", "FastAPI", "PostgreSQL", "GPT‑4o‑mini", "Supabase", "Jikan API"],
-    liveUrl: "#",
+    duration: "2 weeks",
+    tech: ["React", "Vite", "Python", "FastAPI", "PostgreSQL", "Gemini API", "Supabase", "Jikan API"],
+    liveUrl: "https://anivibe-neon.vercel.app/",
     repoUrl: "https://github.com/longv1-code/anivibe",
     problem:
-      "Finding anime that matches a specific feeling is hard with traditional keyword search. I wanted to build a tool that understands abstract requests like 'a dark psychological thriller with a genius protagonist' and delivers precise, curated recommendations instantly.",
+      "I noticed a lot of job postings asking for Python specifically, and backend work was genuinely my weaker side compared to frontend, so I wanted a project that would force me to get better at it rather than lean on what I already knew. I picked anime recommendations because I actually like the genre, and because most anime apps only filter by genre and score — a request like 'a dark psychological anime from the 2010s with a strong female lead' doesn't really work as a search there. I wanted to see if I could translate a sentence like that directly into a real query instead of forcing the user into dropdowns.",
     built: [
       {
-        heading: "Natural Language Query Parsing",
-        body: "Used GPT‑4o‑mini to convert free‑form text into structured filters – genres, themes, release years, and more – which are then passed to the Jikan API. The prompt engineering ensures the model extracts exactly the right dimensions without hallucination.",
-        image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?w=900&q=80",
+        heading: "Natural language to SQL",
+        body: "User queries go through the Gemini API, which translates plain English into a structured query against a 20,000+ record anime dataset rather than a fixed set of filters. The hard part was constraining the model enough that it reliably produces valid, safe SQL shapes instead of hallucinating fields that don't exist in the schema.",
       },
       {
-        heading: "Semantic Re‑ranking for Relevance",
-        body: "After fetching initial results, the system compares anime synopses with the user's original query using embedding similarity. This re‑ranks items so that the closest thematic matches appear first, even if they didn't surface through exact filters.",
-        image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=900&q=80",
+        heading: "A reranking pass on top of the raw query",
+        body: "A direct SQL match isn't always the most relevant one — two anime can match the literal filters and still differ a lot in tone. After the initial query, a custom reranker pipeline re-scores results for relevance before they're shown, so thematically closer matches surface even when they weren't the top literal match.",
+      },
+      {
+        heading: "Live metadata without owning the data",
+        body: "Scores, episode counts, and airing status change constantly, so instead of trying to keep a local copy fresh, the Jikan API enriches each result with live MyAnimeList metadata at request time. That kept the dataset useful without me having to build and maintain a sync pipeline.",
       },
     ],
     learned:
-      "This project deepened my understanding of API orchestration, the nuances of prompt design, and the difference between keyword search and semantic search. I also learned how to structure a modular FastAPI codebase that separates routes, services, and external calls cleanly.",
+      "This was my first time designing a multi-stage AI pipeline (parse → query → rerank → enrich) instead of a single prompt-in, answer-out call, and the biggest lesson was that each stage needs its own failure handling — a bad Gemini parse shouldn't take down the whole request, it should degrade to a simpler query. I also got a much clearer sense of where FastAPI route logic should end and a separate service layer should begin.",
+  },
+  {
+    id: 4,
+    title: "GradPrix",
+    featured: false,
+    year: "2025",
+    month: "January",
+    summary:
+      "Upload your transcript and GradPrix uses AI to turn it into a personalized, step-by-step plan for what to take next toward graduation.",
+    tags: ["Full-Stack", "Hackathon", "AI Integration", "Team Project"],
+    image: gradprix,
+    role: "Frontend Developer",
+    duration: "24 hours",
+    tech: ["React", "TypeScript", "Vite", "Express", "Node.js", "PostgreSQL", "Gemini API"],
+    liveUrl: "https://gradprix.vercel.app/",
+    repoUrl: "https://github.com/Prunuus/tamuhack26",
+    problem:
+      "Built at TAMUhack 2025 with two teammates. Degree requirements are scattered across advisor PDFs, degree-plan websites, and word of mouth, and it's genuinely hard to tell what you actually still need. We wanted to let a student upload their transcript and get a clear, ordered plan back instead of piecing it together themselves.",
+    built: [
+      {
+        heading: "Owning the frontend under a 24-hour clock",
+        body: "I built the React/TypeScript frontend — transcript upload, the generated plan view, and the state management connecting them to our teammates' backend — while they handled the Express/Postgres API and the Gemini integration that parses transcripts into structured requirements. With a hard 24-hour deadline, the main skill was scoping ruthlessly: deciding which UI states actually needed to be handled for a demo versus which could wait.",
+      },
+    ],
+    learned:
+      "Hackathons are a different discipline than a solo project — the bottleneck isn't usually the hard technical problem, it's how fast the team can agree on an API contract and stop blocking each other. I got faster at asking 'what shape of data do you need from me, and by when' instead of building in isolation and integrating at the end.",
+  },
+  {
+    id: 5,
+    title: "Daring Dungoner",
+    featured: false,
+    year: "2025",
+    month: "February",
+    summary:
+      "A 2D dungeon adventure built in Godot with a 4-person team, where the loot you collect grows increasingly personal toward a narrative twist.",
+    tags: ["Game Development", "Hackathon", "Godot", "Team Project"],
+    image: daring_dungoner,
+    role: "Core Systems Programmer",
+    duration: "Hackathon — 2 days",
+    tech: ["Godot Engine", "GDScript"],
+    liveUrl: "https://evee22.itch.io/daring-dungoneer",
+    repoUrl: "https://github.com/longv1-code/chillennium-26",
+    problem:
+      "Built at Chillennium 2025 with three teammates. We wanted a short dungeon-crawler that used its mechanics to tell a story, not just decorate one — loot that means something by the end, not just stat sticks.",
+    built: [
+      {
+        heading: "Core movement, UI, and lighting systems",
+        body: "I owned the systems that everything else in the game sits on top of: player movement, where and how UI elements get placed and triggered, and the lighting that sets the dungeon's mood. One teammate built the level system and a sanity mechanic that reacts as the player progresses; two others handled all the pixel art and spritesheets. Splitting it this way meant I was effectively building the scaffolding the art and level design needed to land correctly.",
+      },
+    ],
+    learned:
+      "Working in Godot for the first time under a hard deadline meant a lot of learning GDScript's node and signal system on the fly. The bigger lesson was about division of labor in game dev specifically — systems, levels, and art are genuinely separable workstreams, but only if someone (in this case, partly me) keeps the interfaces between them simple enough that art and level changes don't constantly break the systems code.",
   },
 ];

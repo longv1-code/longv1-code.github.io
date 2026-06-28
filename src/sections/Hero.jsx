@@ -1,26 +1,7 @@
-import { useState, useEffect } from "react";
 import { PROFILE } from "../data/profile";
 import "../styles/hero.css";
 
 export default function Hero() {
-  const [rIdx,  setRIdx]  = useState(0);
-  const [rFade, setRFade] = useState(false);
-
-  useEffect(() => {
-    const prefersReducedMotion =
-      window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-
-    const id = setInterval(() => {
-      setRFade(true);
-      setTimeout(() => {
-        setRIdx((i) => (i + 1) % PROFILE.roles.length);
-        setRFade(false);
-      }, 350);
-    }, 2800);
-    return () => clearInterval(id);
-  }, []);
-
   const prefersReducedMotion = () =>
     window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -36,14 +17,9 @@ export default function Hero() {
 
         <h1 className="h-name">
           <em>{PROFILE.firstName}</em> {PROFILE.lastName}
-          <span className="h-wave">👋</span>
         </h1>
 
-        <div className="h-role" aria-live="polite" aria-atomic="true">
-          <span className={rFade ? "r-out" : "r-in"}>
-            {PROFILE.roles[rIdx]}
-          </span>
-        </div>
+        <div className="h-role">{PROFILE.role}</div>
 
         <p className="h-desc">{PROFILE.heroBio}</p>
 
