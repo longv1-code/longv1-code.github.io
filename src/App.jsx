@@ -7,7 +7,7 @@ import Nav           from "./components/Nav";
 import Footer        from "./components/Footer";
 import SocialBar     from "./components/SocialBar";
 
-const ENABLE_CASE_STUDY = false;
+const ENABLE_CASE_STUDY = true;
 
 // Scroll to top on every route change
 function ScrollToTop() {

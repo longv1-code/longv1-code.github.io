@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { PROJECTS, sortProjectsByDate } from "../data/projects";
 import { IconArrowUpRight, IconGH } from "../components/Icons";
 import "../styles/archive.css";
@@ -21,7 +22,11 @@ export default function ProjectArchive() {
 				{sortedProjects.map((p) => (
 					<div className="archive-row" role="row" key={`archive-${p.id}`}>
 						<div className="archive-year" role="cell">{p.year}</div>
-						<div className="archive-project" role="cell">{p.title}</div>
+						<div className="archive-project" role="cell">
+							<Link className="archive-project-link" to={`/project/${p.id}`} aria-label={`Open ${p.title} case study`}>
+								{p.title}
+							</Link>
+						</div>
 						<div className="archive-stack" role="cell">{p.tech.join(" / ")}</div>
 						<div role="cell">
 							{p.repoUrl && p.repoUrl !== "#" ? (

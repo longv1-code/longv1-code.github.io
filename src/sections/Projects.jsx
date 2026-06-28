@@ -7,7 +7,7 @@ import "../styles/projects.css";
 export default function Projects() {
   const overflowRef = useRef(null);
   const navigate = useNavigate();
-  const ENABLE_CASE_STUDY = false;
+  const ENABLE_CASE_STUDY = true;
   const isInteractive = ENABLE_CASE_STUDY;
   const featuredProjects = sortProjectsByDate(PROJECTS).filter((p) => p.featured);
   const [atStart, setAtStart] = useState(true);

@@ -38,6 +38,13 @@
 
 .archive-year { color: var(--text2); }
 .archive-project { color: var(--text); font-size: 14px; }
+.archive-project-link {
+	color: inherit;
+	text-decoration: none;
+	transition: color .2s;
+}
+
+.archive-project-link:hover { color: var(--text2); }
 .archive-stack { color: var(--text2); }
 
 .archive-link {
