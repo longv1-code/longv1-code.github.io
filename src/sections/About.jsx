@@ -29,7 +29,7 @@ export default function About() {
               Download Résumé
             </a>
             <a
-              href={PROFILE.resumeUrl}
+              href={PROFILE.resumeGoogleUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-ghost"
